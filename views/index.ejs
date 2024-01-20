@@ -1,0 +1,498 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uv protector</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+  <style>
+    body{
+        font-family: 'Inter', sans-serif;
+    }
+    
+    html{
+      scroll-behavior: smooth;
+    }
+
+    .header{
+        background-color: black;
+    }
+
+    #liveTime {
+            font-size: 20px;
+        }
+
+        .faq-container {
+    max-width: 600px;
+    margin: 50px auto;
+}
+
+.faq-item {
+    background-color: #fff;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.faq-question {
+    padding: 15px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.plus-icon {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.faq-answer {
+    padding: 15px;
+    display: none;
+}
+   </style>
+
+
+</head>
+<body onload="getLocation()">
+
+    <div class="header mt-0">
+        <header class="d-flex justify-content-center py-3 mt-2">
+          <ul class="nav nav-pills">
+            <li class="nav-item pt-3"><p style="color: white;">Experience smarter sun protection with UV Safe </p></li>
+          </ul>
+        </header>
+      </div>
+
+      <div class="mt-3 container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 ">
+          <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+            <span class="fs-4" style="font-weight: bold;">UV Safe</span>
+          </a>
+    
+          <ul class="nav nav-pills">
+            <li class="nav-item"><a href="#home" class="nav-link" style="color: black;">Home</a></li>
+            <li class="nav-item"><a href="#loc" class="nav-link" style="color: black;">Location</a></li>
+            <li class="nav-item"><a href="#guide" class="nav-link" style="color: black;">Guidelines</a></li>
+            <li class="nav-item"><a href="#fore" class="nav-link" style="color: black;">Forecast</a></li>
+            <li class="nav-item"><a href="#faqs" class="nav-link" style="color: black;">FAQs</a></li>
+          </ul>
+        </header>
+      </div>
+
+      <section id="home">
+
+      <div class="container col-xxl-10 px-3 py-3">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+          <div class="col-10 col-sm-8 col-lg-6">
+            <img style="border-radius: 40px;" src="/images/sunimage.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+          </div>
+          <div class="col-lg-6">
+            <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">  Your reliable UV data forecaster </h1>
+            <p class="lead">Offering real-time UV data and comprehensive day forecast to help you protect your skin effectively from sun damage. </p>
+            
+          </div>
+        </div>
+      </div>
+  
+      <div class=" container py-3" id="hanging-icons" style="background-color: #655CFE; border-radius: 10px;">
+        <div class="row g-4 py-1 px-1 row-cols-1 row-cols-lg-3">
+          <div class="col d-flex align-items-start">
+            <div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+            </div>
+            <div>
+              <h3 class="fs-3 text-body-emphasis" style="color: white !important;">Empowering you to safely enjoy the sun</h3>
+            </div>
+          </div>
+          <div class="col d-flex align-items-start">
+            <div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" style="background-color: #655CFE; color:white" class="bi bi-brightness-high" viewBox="0 0 16 16">
+                    <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+                  </svg>
+            </div>
+            <div>
+              <p style="color: white !important; font-size: larger;">Real-time UV data insights</p>
+            </div>
+          </div>
+          <div class="col d-flex align-items-start">
+            <div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" style="background-color: #655CFE; color:white" class="bi bi-star" viewBox="0 0 16 16">
+                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                  </svg>
+            </div>
+            <div>
+              <p style="color: white !important; font-size: larger;">Personalized sun protection recommendations</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+      
+      <section id="loc">
+    
+      <div class="container my-5">
+        <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+          <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+            <h3 class="display-4 fw-bold lh-1 text-body-emphasis">Location Info</h3>
+            <p class="lead">You are currently in <%= city %>, <%= state %>, <%= country %> </p>
+          </div>
+          <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
+              <img class="rounded-lg-3" src="./images/download.png" alt="Person looking at UV data" width="300">
+          </div>
+        </div>
+      </div>
+
+      </section>
+
+
+      <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+          <div class="col-10 col-sm-8 col-lg-6">
+            <img src="./images/uvData.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="400" height="400" loading="lazy">
+          </div>
+          <div class="col-lg-6">
+            <h3 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">UV Forecast</h3>
+            <div><h2>Current time: <h3 id="liveTime" ></h3> </h2></div>
+            <p class="lead mt-4">The UV forecast in your area is displayed below</p>
+          </div>
+        </div>
+      </div>
+      
+<section id="guide">
+      <div class="container px-4 py-5" id="hanging-icons">
+        <h2 class="pb-2 border-bottom">UV Index Guidelines:</h2>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+          <div class="col d-flex align-items-start">
+            <div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="background-color: white !important;" fill="currentColor" class="bi bi-brightness-alt-high-fill" viewBox="0 0 16 16">
+                <path d="M8 3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 3m8 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5m-13.5.5a.5.5 0 0 0 0-1h-2a.5.5 0 0 0 0 1zm11.157-6.157a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m-9.9 2.121a.5.5 0 0 0 .707-.707L3.05 5.343a.5.5 0 1 0-.707.707zM8 7a4 4 0 0 0-4 4 .5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5 4 4 0 0 0-4-4"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="fs-2 text-body-emphasis"> UV Index 0-2 (Low) </h3>
+              <p>🟢 Bask worry-free! </p> <p>No protection needed – nature's your playground!</p>
+            </div>
+          </div>
+          <div class="col d-flex align-items-start">
+            <div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="background-color: white !important;" fill="currentColor" class="bi bi-brightness-low-fill" viewBox="0 0 16 16">
+                <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0M8.5 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 11a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m5-5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m-11 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m9.743-4.036a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707m-7.779 7.779a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707m7.072 0a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707M3.757 4.464a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="fs-2 text-body-emphasis">UV Index 3-4</h3>
+              <p>🟡 Sunshine delight!</p> <p> Rock that hat, slather on sunscreen, and keep it cool under an hour.</p>
+            </div>
+          </div>
+          <div class="col d-flex align-items-start">
+            <div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="background-color: white !important;" fill="currentColor"  class="bi bi-brightness-high-fill" viewBox="0 0 16 16">
+                <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="fs-2 text-body-emphasis">UV Index 11+</h3>
+              <p>🔴 Danger zone! </p> <p>Seek shade, glam up in protective gear, and flaunt those UV-blocking shades. Your skin, your style, your safety! 😎👒</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <section id="fore">
+      <div class="container">
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <div class="col">
+            <div class="card shadow-sm">
+             <img style="height: 225px; width: 100%;" src="./images/img01.jpg" alt="sunrise image">
+              <div class="card-body">
+                <p class="card-text"> UV at <%= timeZero %> in <%= city %>: "<%- uvZero %>"  </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <img style="height: 225px; width: 100%;" src="./images/img02.jpg" alt="sunrise image">
+              <div class="card-body">
+                <p class="card-text"> UV at <%= timeOne %> in <%= city %>: "<%= uvOne %>" </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <img style="height: 225px; width: 100%;" src="./images/img03.jpg" alt="sunrise image">
+              <div class="card-body">
+                <p class="card-text"> UV at <%= timeTwo %> in <%= city %>: "<%= uvTwo %>" </p>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col">
+            <div class="card shadow-sm">
+              <img style="height: 225px; width: 100%;" src="./images/img04.jpg" alt="sunrise image">
+              <div class="card-body">
+                <p class="card-text"> UV at <%= timeThree %> in <%= city %>: "<%= uvThree %>" </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <img style="height: 225px; width: 100%;" src="./images/img05.jpg" alt="sunrise image">
+              <div class="card-body">
+                <p class="card-text"> UV at <%= timeFour %> in <%= city %>: "<%= uvFour %>" </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <img style="height: 225px; width: 100%;" src="./images/img06.jpg" alt="sunrise image">
+              <div class="card-body">
+                <p class="card-text"> UV at <%= timeFive %> in <%= city %>: "<%= uvFive %>" </p>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col">
+            <div class="card shadow-sm">
+              <img style="height: 225px; width: 100%;" src="./images/img07.jpg" alt="sunrise image">
+              <div class="card-body">
+                <p class="card-text"> UV at <%= timeSix %> in <%= city %>: "<%= uvSix %>" </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <img style="height: 225px; width: 100%;" src="./images/img08.jpg" alt="sunrise image">
+              <div class="card-body">
+                <p class="card-text"> UV at <%= timeSeven %> in <%= city %>: "<%= uvSeven %>" </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <img style="height: 225px; width: 100%;" src="./images/img09.jpg" alt="sunrise image">
+              <div class="card-body">
+                <p class="card-text"> UV at <%= timeEight %> in <%= city %>: "<%= uvEight %>" </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card shadow-sm">
+              <img style="height: 225px; width: 100%;" src="./images/img10.jpg" alt="sunrise image">
+              <div class="card-body">
+                <p class="card-text"> UV at <%= timeNine %> in <%= city %>: "<%= uvNine %>" </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card shadow-sm">
+              <img style="height: 225px; width: 100%;" src="./images/img11.jpg" alt="sunrise image">
+              <div class="card-body">
+                <p class="card-text"> UV at <%= timeTen %> in <%= city %>: "<%= uvTen %>" </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      
+</section>
+
+
+      <hr align="center">
+
+
+      <section id="faqs"> 
+
+      
+      <div class="container my-5">
+        <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+          <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+            <h3 class="display-4 fw-bold lh-1 text-body-emphasis" style="font-size:large !important;">Questions? We've Got Answers </h3>
+            <p class="lead" style="font-size:medium !important;"</p>Discover our FAQs to learn more about UV Safe and how it can help you protect yourself from harmful UV rays.</p>
+          </div>
+          <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
+            <div class="faq-container">
+              <div class="faq-item">
+                  <div class="faq-question">
+                      <span class="plus-icon">+</span> How accurate are UV forecasts?
+                  </div>
+                  <div class="faq-answer">
+                    UV forecasts offer a general idea of UV levels, but accuracy depends on factors like cloud cover and location. Despite forecasts, it's recommended to use sunscreen and protective measures during peak UV hours to minimize sun damage.
+                  </div>
+              </div>
+      
+              <div class="faq-item">
+                  <div class="faq-question">
+                      <span class="plus-icon">+</span> When should I apply sunscreen? 
+                  </div>
+                  <div class="faq-answer">
+                      
+                   Apply sunscreen 15-30 minutes before sun exposure and reapply every two hours or more if swimming or sweating. Ensure full coverage, including ears and the back of the neck, for effective protection against UV rays.
+                  
+                  </div>
+              </div>
+
+              <div class="faq-item">
+                <div class="faq-question">
+                    <span class="plus-icon">+</span> How does UV affect my health?  
+                </div>
+                <div class="faq-answer">
+                  UV radiation can lead to sunburn, premature aging, and an increased risk of skin cancer. It can also harm your eyes, potentially causing conditions like cataracts. Protective measures, such as sunscreen and sunglasses, are essential to mitigate these health risks.
+                </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                  <span class="plus-icon">+</span> What to do if nothing is showing in place of UV data and location info?  
+              </div>
+              <div class="faq-answer">
+                  This happens due to low internet speed or sometimes API sends data slowly. Refresh the page multiple times. It'll work.
+              </div>
+          </div>
+
+
+            <div class="faq-item">
+              <div class="faq-question">
+                  <span class="plus-icon">+</span> What to do if my location showing is different?  
+              </div>
+              <div class="faq-answer">
+                  This could be due to some problem in fetching the location from you. Refresh the page and if it didn't work try again after few hours.
+              </div>
+          </div>
+      
+        </section>
+              <!-- Add more FAQ items as needed -->
+      
+          </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+          <div class="col-md-4 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+              <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+            </a>
+            <span class="mb-3 mb-md-0 text-body-secondary"> &copy; 2024 </span>
+          </div>
+      
+          <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <li class="ms-3"><a class="text-body-secondary" href="https://github.com/divyansharma001"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+            </svg></a></li>
+            <li class="ms-3"><a class="text-body-secondary" href="mailto:divyanshsharma4507@gmail.com"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+              <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
+            </svg></svg></a></li>
+          </ul>
+        </footer>
+      </div>
+      
+      
+<script>document.addEventListener('DOMContentLoaded', function () {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+
+    faqQuestions.forEach(function (question) {
+        question.addEventListener('click', function () {
+            const answer = this.nextElementSibling;
+
+            if (answer.style.display === 'block') {
+                answer.style.display = 'none';
+                question.querySelector('.plus-icon').innerHTML = '+';
+            } else {
+                answer.style.display = 'block';
+                question.querySelector('.plus-icon').innerHTML = '-';
+            }
+        });
+    });
+});
+
+  </script>
+
+      <script>
+        function updateDateTime() {
+            var currentTime = new Date();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
+    
+            // Add leading zeros to single-digit minutes and seconds
+            minutes = (minutes < 10 ? "0" : "") + minutes;
+            seconds = (seconds < 10 ? "0" : "") + seconds;
+    
+            // Format the time as HH:mm:ss
+            var formattedTime = hours + ":" + minutes + ":" + seconds;
+    
+            // Display the formatted time on the webpage
+            document.getElementById("liveTime").innerText = formattedTime;
+        }
+    
+        // Update the time every second
+        setInterval(updateDateTime, 1000);
+    
+        // Call the function once to display the initial time
+        updateDateTime();
+    </script>
+
+
+
+     <script>
+      // Get the element to display latitude and longitude
+      const x = document.getElementById("demo");
+  
+      function getLocation() {
+          if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(showPosition);
+          } else {
+              console.log("Geolocation is not supported by this browser.");
+          }
+      }
+  
+      function showPosition(position) {
+          console.log("Latitude: " + position.coords.latitude +
+              "Longitude: " + position.coords.longitude);
+  
+          var lat = position.coords.latitude;
+          var lng = position.coords.longitude;
+          var user = {
+              latitude: lat, // Include latitude in the request
+              longitude: lng, // Include longitude in the request
+          };
+          console.log(user);
+  
+          var config = {
+              headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded'
+              }
+          };
+  
+          // POST request
+          axios.post("/", { user }, config).then(function (response) {
+              console.log("POST Response:", response);
+          });
+        }
+              
+      
+  </script>
+      
+</body>
+</html>
