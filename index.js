@@ -106,7 +106,7 @@ app.post('/', async (req, res) => {
 
     try {
       const geocodingResponse = await axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}%2C${longitude}&key=${openCageAPI}`);
-      cityEjs = geocodingResponse.data.results[0].components.city;
+      cityEjs = geocodingResponse.data.results[0].components.city || geocodingResponse.data.results[0].components.state_district;
       stateEjs = geocodingResponse.data.results[0].components.state;
       countryEjs = geocodingResponse.data.results[0].components.country;
     } catch (error) {
@@ -144,6 +144,7 @@ app.post('/', async (req, res) => {
         uvEjsTen = uvResponse.data.result[10].uv;
 
       console.log(stateEjs);
+
 
 
      dateZero = new Date(uvResponse.data.result[0].uv_time);
