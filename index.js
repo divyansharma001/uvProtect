@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const openCageAPI = process.env.OPEN_CAGE_KEY;
 const yourApiKey = process.env.OPEN_UV_KEY;
+const formattedTimesIST = [];
 var place;
 
 let lat = null;
@@ -91,6 +92,7 @@ app.get('/', (req,res)=>{
 
 
 
+
         
 
 
@@ -143,43 +145,30 @@ app.post('/', async (req, res) => {
         uvEjsNine = uvResponse.data.result[9].uv;
         uvEjsTen = uvResponse.data.result[10].uv;
 
-      console.log(stateEjs);
+      console.log(cityEjs);
 
+      for (let i = 0; i < 11; i++) {
+        const dateUTC = new Date(uvResponse.data.result[i].uv_time);
+        const offsetIST = 5.5 * 60 * 60 * 1000; // 5.5 hours ahead of UTC for Indian Standard Time
+        const dateIST = new Date(dateUTC.getTime() + offsetIST);
+    
+        const formattedTime = `${dateIST.getHours().toString().padStart(2, '0')}:${dateIST.getMinutes().toString().padStart(2, '0')}`;
+        formattedTimesIST.push(formattedTime);
+    }
+    
+   formattedTimeZero = formattedTimesIST[0];
+   formattedTimeOne = formattedTimesIST[1];
+   formattedTimeTwo = formattedTimesIST[2];
+   formattedTimeThree = formattedTimesIST[3]; 
+   formattedTimeFour = formattedTimesIST[4];
+   formattedTimeFive = formattedTimesIST[5];
+   formattedTimeSix = formattedTimesIST[6];
+   formattedTimeSeven = formattedTimesIST[7];
+   formattedTimeEight = formattedTimesIST[8];
+   formattedTimeNine = formattedTimesIST[9];
+   formattedTimeTen = formattedTimesIST[10];
 
-
-     dateZero = new Date(uvResponse.data.result[0].uv_time);
-     formattedTimeZero = `${dateZero.getHours().toString().padStart(2, '0')}:${dateZero.getMinutes().toString().padStart(2, '0')}`;
-
-     dateOne = new Date(uvResponse.data.result[1].uv_time);
-     formattedTimeOne = `${dateOne.getHours().toString().padStart(2, '0')}:${dateOne.getMinutes().toString().padStart(2, '0')}`;
-
-     dateTwo= new Date(uvResponse.data.result[2].uv_time);
-     formattedTimeTwo = `${dateTwo.getHours().toString().padStart(2, '0')}:${dateTwo.getMinutes().toString().padStart(2, '0')}`;
-
-     dateThree = new Date(uvResponse.data.result[3].uv_time);
-     formattedTimeThree = `${dateThree.getHours().toString().padStart(2, '0')}:${dateThree.getMinutes().toString().padStart(2, '0')}`;
-
-     dateFour = new Date(uvResponse.data.result[4].uv_time);
-     formattedTimeFour = `${dateFour.getHours().toString().padStart(2, '0')}:${dateFour.getMinutes().toString().padStart(2, '0')}`;
-
-     dateFive = new Date(uvResponse.data.result[5].uv_time);
-     formattedTimeFive = `${dateFive.getHours().toString().padStart(2, '0')}:${dateFive.getMinutes().toString().padStart(2, '0')}`;
-
-     dateSix = new Date(uvResponse.data.result[6].uv_time);
-     formattedTimeSix = `${dateSix.getHours().toString().padStart(2, '0')}:${dateSix.getMinutes().toString().padStart(2, '0')}`;
-
-     dateSeven = new Date(uvResponse.data.result[7].uv_time);
-     formattedTimeZero = `${dateZero.getHours().toString().padStart(2, '0')}:${dateSeven.getMinutes().toString().padStart(2, '0')}`;
-
-     dateEight = new Date(uvResponse.data.result[8].uv_time);
-     formattedTimeEight = `${dateEight.getHours().toString().padStart(2, '0')}:${dateEight.getMinutes().toString().padStart(2, '0')}`;
-
-     dateNine = new Date(uvResponse.data.result[9].uv_time);
-     formattedTimeNine = `${dateNine.getHours().toString().padStart(2, '0')}:${dateNine.getMinutes().toString().padStart(2, '0')}`;
-
-     dateTen = new Date(uvResponse.data.result[10].uv_time);
-     formattedTimeTen = `${dateTen.getHours().toString().padStart(2, '0')}:${dateTen.getMinutes().toString().padStart(2, '0')}`;
-
+     console.log(JSON.stringify(formattedTimesIST[0]));
 
 
       } catch (error) {

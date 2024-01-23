@@ -26,6 +26,8 @@ UV Safe is a web application that leverages geolocation, UV forecast data, and r
     npm install
     ```
 
+4. Insert the API keys wherever required.
+
 3. Run the server:
 
     ```bash
@@ -39,6 +41,8 @@ UV Safe is a web application that leverages geolocation, UV forecast data, and r
     ```
 
    The server will be accessible at [http://localhost:3000](http://localhost:3000).
+
+
 
 ## Usage
 
