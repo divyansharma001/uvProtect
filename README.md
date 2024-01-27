@@ -23,7 +23,7 @@ UV Safe is a web application that leverages geolocation, UV forecast data, and r
 2. Install dependencies:
 
     ```bash
-    npm install
+    npm i
     ```
 
 4. Insert the API keys wherever required.
