@@ -67,8 +67,10 @@ The application will retrieve the UV index data and location information for the
 
 **Screenshots**
 
-* **Home Page:**  (Add a screenshot of the initial home page with input fields for latitude and longitude.)
-* **Results Page:** (Add a screenshot of the page displaying the retrieved UV index data, location details, and formatted timestamps.)
+* **Home Page:**  ![Home page screenshot](./public/images/homePage.png)
+* **Location fetching:** ![Home page screenshot](./public/images/locationPage.png)
+* * **Guidelines:** ![Home page screenshot](./public/images/guidelines.png)
+* * *QnA:** ![Home page screenshot](./public/images/lastPage.png)
 
 **Contributing**
 
