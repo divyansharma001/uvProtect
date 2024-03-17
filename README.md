@@ -69,8 +69,8 @@ The application will retrieve the UV index data and location information for the
 
 * **Home Page:**  ![Home page screenshot](./public/images/homePage.png)
 * **Location fetching:** ![Home page screenshot](./public/images/locationPage.png)
-* * **Guidelines:** ![Home page screenshot](./public/images/guidelines.png)
-* * *QnA:** ![Home page screenshot](./public/images/lastPage.png)
+* **Guidelines:** ![Home page screenshot](./public/images/guidelines.png)
+* **QnA:** ![Home page screenshot](./public/images/lastPage.png)
 
 **Contributing**
 
